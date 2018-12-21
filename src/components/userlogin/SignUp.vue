@@ -9,6 +9,7 @@
                 <form>
                   <v-text-field label="Email" color="black--text" type="email"></v-text-field>
                   <v-text-field label="Password" color="black--text" type="password"></v-text-field>
+                  <v-text-field label="Re-type Password" color="black--text" type="password"></v-text-field>
                   <v-layout row>
                     <v-flex class="text-xs-center text-sm-center text-md-center">
                       <v-btn>Submit</v-btn>
@@ -17,7 +18,7 @@
                   <v-divider class="mt-2 mb-2"></v-divider>
                   <v-layout row>
                     <v-flex class="text-xs-center text-sm-center text-md-center">
-                      <v-btn>Already have an account?</v-btn>
+                      <v-btn to="/signin">Already have an account?</v-btn>
                     </v-flex>
                   </v-layout>
                 </form>

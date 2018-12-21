@@ -2,7 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/components/navbar/Home'
 import OurMusic from '@/components/navbar/OurMusic'
-import SignIn from '@/components/navbar/SignIn'
+import SignIn from '@/components/userlogin/SignIn.vue'
+import SignUp from '@/components/userlogin/SignUp.vue'
 import Shop from '@/components/shopping/Shop'
 import TrendingAlbum from '@/components/albums/TrendingAlbum.vue'
 import TrendingArtists from '@/components/artists/Artists.vue'
@@ -26,6 +27,11 @@ export default new Router({
       path: '/signin',
       name: 'SignIn',
       component: SignIn
+    },
+    {
+      path: '/signup',
+      name: 'SignUp',
+      component: SignUp
     },
     {
       path: '/addtocart',

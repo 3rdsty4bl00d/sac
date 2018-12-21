@@ -11,7 +11,7 @@
       <p class="display-1">Don't hesitate to sign up for free!!!</p>
     </v-text>
     <div class="sign-btn">
-      <v-btn class="pa-4">Sign up for free</v-btn>
+      <v-btn class="pa-4" to="/signup">Sign up for free</v-btn>
     </div>
   </v-img>
 </template>
