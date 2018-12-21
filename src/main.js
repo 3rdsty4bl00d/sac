@@ -9,6 +9,8 @@ import { store } from '@/store/index.js'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.css'
 
+export const eventBus = new Vue()
+
 Vue.use(VueAwesomeSwiper)
 
 Vue.use(Vuetify, {
