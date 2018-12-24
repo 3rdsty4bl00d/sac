@@ -12,6 +12,7 @@
       <v-layout row v-else="load">
         <v-flex xs12 sm12 md12>
           <h3 class="headline">Total: {{ cart }} items</h3>
+          <h3>{{ addingShoppingCart }}</h3>
         </v-flex>
       </v-layout>
     </v-container>
@@ -20,6 +21,9 @@
 
 <script>
 export default {
+  data: () => ({
+    addingShoppingCart: []
+  }),
   computed: {
     cart () {
       return this.$store.getters.cart
@@ -29,6 +33,14 @@ export default {
     },
     trendingAlbum () {
       return this.$store.getters.trendingAlbum
+    },
+    shoppingLists () {}
+  },
+  created () {
+    for (var i = 0; i < this.trendingAlbum.length; i++) {
+      if (this.trendingAlbum[i].albumShop >= 0) {
+        this.addingShoppingCart.push(this.trendingAlbum[i].albumShop)
+      }
     }
   }
 }
