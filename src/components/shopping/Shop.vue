@@ -10,7 +10,9 @@
         </v-flex>
       </v-layout>
       <v-layout row v-else="load">
-        <v-flex xs12 sm12 md12>{{ cart }}</v-flex>
+        <v-flex xs12 sm12 md12>
+          <h3 class="headline">Total: {{ cart }} items</h3>
+        </v-flex>
       </v-layout>
     </v-container>
   </div>
@@ -24,6 +26,9 @@ export default {
     },
     load () {
       return this.$store.getters.load
+    },
+    trendingAlbum () {
+      return this.$store.getters.trendingAlbum
     }
   }
 }

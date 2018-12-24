@@ -86,6 +86,7 @@ export const store = new Vuex.Store({
         albumName: 'Kamikaze',
         albumList: '14 Songs',
         albumArtist: 'Eminem',
+        albumShop: 0,
         albumImg:
           'https://upload.wikimedia.org/wikipedia/en/thumb/6/62/Eminem_-_Kamikaze.jpg/220px-Eminem_-_Kamikaze.jpg'
       },
@@ -93,6 +94,7 @@ export const store = new Vuex.Store({
         albumName: 'Multiply',
         albumList: '12 Songs',
         albumArtist: 'Ed Sheeran',
+        albumShop: 0,
         albumImg:
           'https://upload.wikimedia.org/wikipedia/en/thumb/a/ad/X_cover.png/220px-X_cover.png'
       },
@@ -100,6 +102,7 @@ export const store = new Vuex.Store({
         albumName: 'The Boy Who Cried Wolf',
         albumList: '8 Songs',
         albumArtist: 'Passenger',
+        albumShop: 0,
         albumImg:
           'https://images-na.ssl-images-amazon.com/images/I/71uIvPHD44L._SX355_.jpg'
       },
@@ -107,6 +110,7 @@ export const store = new Vuex.Store({
         albumName: 'Never Mind',
         albumList: '12 Songs',
         albumArtist: 'Nirvana',
+        albumShop: 0,
         albumImg:
           'https://www.billboard.com/files/styles/900_wide/public/media/Nirvana-Nevermind-album-covers-billboard-1000x1000.jpg'
       },
@@ -114,6 +118,7 @@ export const store = new Vuex.Store({
         albumName: 'True Blue',
         albumList: '12 Songs',
         albumArtist: 'Madonna',
+        albumShop: 0,
         albumImg:
           'https://www.billboard.com/files/styles/900_wide/public/media/Madonna-True-Blue-album-covers-billboard-1000x1000.jpg'
       },
@@ -121,6 +126,7 @@ export const store = new Vuex.Store({
         albumName: 'MotherShip',
         albumList: '14 Songs',
         albumArtist: 'Led Zeppelin',
+        albumShop: 0,
         albumImg:
           'https://www.billboard.com/files/styles/900_wide/public/media/Led-Zeppelin-Led-Zeppelin-greatest-album-covers-billboard-1000x1000.jpg'
       },
@@ -128,6 +134,7 @@ export const store = new Vuex.Store({
         albumName: 'Holy Diver',
         albumList: '14 Songs',
         albumArtist: 'Dio',
+        albumShop: 0,
         albumImg:
           'https://www.revolvermag.com/sites/default/files/styles/original_image__844px_x_473px_/public/media/section-media/screen_shot_2017-08-14_at_12.18.16_pm.png?itok=SmNPE1gU&timestamp=1508359501'
       },
@@ -135,6 +142,7 @@ export const store = new Vuex.Store({
         albumName: 'Just For Life',
         albumList: '8 Songs',
         albumArtist: 'Lana Del Rey',
+        albumShop: 0,
         albumImg:
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMp3aGoybGES5e9vmfUDzSLRkKB7JkX5lqGDPFQet_Vl-NHM2K'
       }
@@ -213,14 +221,15 @@ export const store = new Vuex.Store({
     cart: 0
   },
   mutations: {
-    addToCart: state => {
+    addToCart: (state, index) => {
       state.cart++
       if (state.load === false) {
         state.load = !state.load
       }
+      const key = index
+      state.trendingAlbum[key].albumShop++
     }
   },
-  actions: {},
   getters: {
     cart (state) {
       return state.cart

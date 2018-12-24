@@ -10,9 +10,9 @@
             <md-card-media>
               <!-- swiper -->
               <swiper :options="swiperOption">
-                <swiper-slide v-for="src in trendingAlbum" :key="src.name">
+                <swiper-slide v-for="(src, i) in trendingAlbum" :key="src.name">
                   <v-img :src="src.albumImg" height="200px" width="200px" class="songsTrending">
-                    <v-btn class="listen" fab @click.prevent="addToCart">
+                    <v-btn class="listen" fab @click.prevent="addToCart(i)">
                       <v-icon>{{ plus }}</v-icon>
                     </v-btn>
                   </v-img>
@@ -20,6 +20,7 @@
                     <p style="margin-bottom: 0px;">{{ src.albumName }}</p>
                     <p style="margin-bottom: 0px; opacity: 0.2;">{{ src.albumArtist }}</p>
                     <p>{{ cart }}</p>
+                    <p>{{ src.albumShop }}</p>
                   </v-text>
                 </swiper-slide>
                 <div class="swiper-button-prev" slot="button-prev"></div>
@@ -56,8 +57,8 @@ export default {
     }
   },
   methods: {
-    addToCart () {
-      this.$store.commit('addToCart')
+    addToCart (index) {
+      this.$store.commit('addToCart', index)
     }
   }
 }
