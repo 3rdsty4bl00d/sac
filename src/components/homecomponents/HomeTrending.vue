@@ -39,7 +39,7 @@
     </v-container>
     <v-layout row>
       <v-flex xs12 sm12 md12 class="text-xs-center text-sm-center text-md-center mb-3">
-        <v-btn>Explore Trending Songs</v-btn>
+        <v-btn to="/ourmusic">Explore Trending Songs</v-btn>
       </v-flex>
     </v-layout>
   </v-card>
@@ -61,7 +61,7 @@ export default {
   }),
   computed: {
     trendingSongs () {
-      return this.$store.state.srcs
+      return this.$store.getters.srcs
     }
   }
 }

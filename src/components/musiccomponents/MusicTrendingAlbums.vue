@@ -4,21 +4,22 @@
       <v-layout row>
         <v-flex xs12>
           <v-text>
-            <h2 class="display-1 mb-5">Trending Songs</h2>
+            <h2 class="display-1 mb-5">Trending Albums</h2>
           </v-text>
           <md-card>
             <md-card-media>
               <!-- swiper -->
               <swiper :options="swiperOption">
-                <swiper-slide v-for="src in trendingSongs" :key="src.name">
-                  <v-img :src="src.src" height="200px" width="200px" class="songsTrending">
-                    <v-btn class="listen" fab>
-                      <v-icon>{{ icon }}</v-icon>
+                <swiper-slide v-for="src in trendingAlbum" :key="src.name">
+                  <v-img :src="src.albumImg" height="200px" width="200px" class="songsTrending">
+                    <v-btn class="listen" fab @click.prevent="addToCart">
+                      <v-icon>{{ plus }}</v-icon>
                     </v-btn>
                   </v-img>
                   <v-text class="text-xs-center text-sm-center text-md-center">
-                    <p style="margin-bottom: 0px;">{{ src.song }}</p>
-                    <p style="margin-bottom: 0px; opacity: 0.2;">{{ src.name }}</p>
+                    <p style="margin-bottom: 0px;">{{ src.albumName }}</p>
+                    <p style="margin-bottom: 0px; opacity: 0.2;">{{ src.albumArtist }}</p>
+                    <p>{{ cart }}</p>
                   </v-text>
                 </swiper-slide>
                 <div class="swiper-button-prev" slot="button-prev"></div>
@@ -44,11 +45,15 @@ export default {
         prevEl: '.swiper-button-prev'
       }
     },
-    icon: 'fas fa-play'
+    plus: 'fas fa-plus',
+    minus: 'fas fa-minus'
   }),
   computed: {
-    trendingSongs () {
-      return this.$store.getters.srcs
+    trendingAlbum () {
+      return this.$store.getters.trendingAlbum
+    },
+    cart () {
+      return this.$store.getters.cart
     }
   }
 }
@@ -64,8 +69,8 @@ export default {
 }
 .listen {
   position: absolute;
-  top: 30%;
   left: 50%;
+  top: 30%;
   transform: translateX(-60%);
   visibility: hidden;
   opacity: 0;

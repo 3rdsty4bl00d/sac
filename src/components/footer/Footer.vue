@@ -6,7 +6,7 @@
           <v-card flat tile class="grey darken-3 white--text text-xs-center">
             <v-card-text>
               <v-btn
-                v-for="icon in icons"
+                v-for="icon in iconsFooter"
                 :key="icon"
                 class="mx-3 white--text"
                 icon
@@ -32,30 +32,11 @@
 
 <script>
 export default {
-  data: () => ({
-    icons: [
-      {
-        icon: 'fab fa-facebook',
-        link: 'https://www.facebook.com/'
-      },
-      {
-        icon: 'fab fa-twitter',
-        link: 'https://twitter.com/'
-      },
-      {
-        icon: 'fab fa-google-plus',
-        link: 'https://plus.google.com'
-      },
-      {
-        icon: 'fab fa-linkedin',
-        link: 'https://www.linkedin.com/'
-      },
-      {
-        icon: 'fab fa-instagram',
-        link: 'https://www.instagram.com/'
-      }
-    ]
-  })
+  computed: {
+    iconsFooter () {
+      return this.$store.getters.iconsFooter
+    }
+  }
 }
 </script>
 

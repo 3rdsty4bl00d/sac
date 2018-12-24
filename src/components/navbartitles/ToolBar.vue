@@ -22,29 +22,12 @@ export default {
   data () {
     return {
       fixed: false,
-      title: 'Sac Music',
-      navBarItems: [
-        {
-          title: 'Home',
-          link: '/',
-          icon: 'home'
-        },
-        {
-          title: 'Our Music',
-          link: '/ourmusic',
-          icon: 'home'
-        },
-        {
-          title: 'Sign In',
-          link: '/signin',
-          icon: 'home'
-        },
-        {
-          title: '',
-          link: '/addtocart',
-          icon: 'shopping_cart'
-        }
-      ]
+      title: 'Sac Music'
+    }
+  },
+  computed: {
+    navBarItems () {
+      return this.$store.getters.navBarItems
     }
   },
   methods: {

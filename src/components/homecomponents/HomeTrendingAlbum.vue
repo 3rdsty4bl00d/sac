@@ -75,31 +75,13 @@ export default {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev'
       }
-    },
-    trendingAlbum: [
-      {
-        albumName: 'Kamikaze',
-        albumList: '14 Songs',
-        albumArtist: 'Eminem',
-        albumImg:
-          'https://upload.wikimedia.org/wikipedia/en/thumb/6/62/Eminem_-_Kamikaze.jpg/220px-Eminem_-_Kamikaze.jpg'
-      },
-      {
-        albumName: 'Multiply',
-        albumList: '12 Songs',
-        albumArtist: 'Ed Sheeran',
-        albumImg:
-          'https://upload.wikimedia.org/wikipedia/en/thumb/a/ad/X_cover.png/220px-X_cover.png'
-      },
-      {
-        albumName: 'The Boy Who Cried Wolf',
-        albumList: '8 Songs',
-        albumArtist: 'Passenger',
-        albumImg:
-          'https://images-na.ssl-images-amazon.com/images/I/71uIvPHD44L._SX355_.jpg'
-      }
-    ]
+    }
   }),
+  computed: {
+    trendingAlbum () {
+      return this.$store.getters.trendingAlbum
+    }
+  },
   methods: {
     navigateToAlbum () {
       return this.$router.push('/trending-album')

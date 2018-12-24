@@ -39,32 +39,6 @@ export default {
   },
   data () {
     return {
-      imageSrc: [
-        {
-          src: 'https://picsum.photos/200/300/?gravity=center'
-        },
-        {
-          src: 'https://picsum.photos/200/300/?gravity=east'
-        },
-        {
-          src: 'https://picsum.photos/200/300?image=0'
-        },
-        {
-          src: 'https://picsum.photos/g/200/300'
-        },
-        {
-          src: 'https://picsum.photos/200/300/?random'
-        },
-        {
-          src: 'https://picsum.photos/200/300'
-        },
-        {
-          src: 'https://picsum.photos/200/300/?gravity=west'
-        },
-        {
-          src: 'https://picsum.photos/200/300/?gravity=south'
-        }
-      ],
       swiperOption: {
         effect: 'coverflow',
         grabCursor: true,
@@ -81,6 +55,11 @@ export default {
           el: '.swiper-pagination'
         }
       }
+    }
+  },
+  computed: {
+    imageSrc () {
+      return this.$store.getters.imageSrc
     }
   }
 }
