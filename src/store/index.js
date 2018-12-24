@@ -213,19 +213,20 @@ export const store = new Vuex.Store({
     cart: 0
   },
   mutations: {
-    setCart (state, payload) {
-      state.cart = payload
+    addToCart: state => {
+      state.cart++
+      if (state.load === false) {
+        state.load = !state.load
+      }
     }
   },
-  actions: {
-    cart ({ commit }) {
-      const userCart = this.cart++
-      commit('setCart', userCart)
-    }
-  },
+  actions: {},
   getters: {
     cart (state) {
       return state.cart
+    },
+    load (state) {
+      return state.load
     },
     navBarItems (state) {
       return state.navBarItems

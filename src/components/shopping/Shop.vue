@@ -10,16 +10,23 @@
         </v-flex>
       </v-layout>
       <v-layout row v-else="load">
-        <v-flex xs12 sm12 md12>
-          <p>okay</p>
-        </v-flex>
+        <v-flex xs12 sm12 md12>{{ cart }}</v-flex>
       </v-layout>
     </v-container>
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  computed: {
+    cart () {
+      return this.$store.getters.cart
+    },
+    load () {
+      return this.$store.getters.load
+    }
+  }
+}
 </script>
 
 <style>

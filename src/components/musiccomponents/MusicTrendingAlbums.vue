@@ -45,8 +45,7 @@ export default {
         prevEl: '.swiper-button-prev'
       }
     },
-    plus: 'fas fa-plus',
-    minus: 'fas fa-minus'
+    plus: 'fas fa-plus'
   }),
   computed: {
     trendingAlbum () {
@@ -54,6 +53,11 @@ export default {
     },
     cart () {
       return this.$store.getters.cart
+    }
+  },
+  methods: {
+    addToCart () {
+      this.$store.commit('addToCart')
     }
   }
 }
