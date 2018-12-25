@@ -12,7 +12,7 @@
               <swiper :options="swiperOption">
                 <swiper-slide v-for="(src, i) in trendingAlbum" :key="src.name">
                   <v-img :src="src.albumImg" height="200px" width="200px" class="songsTrending">
-                    <v-btn class="listen" fab @click.prevent="addToCart(i)">
+                    <v-btn class="listen" fab @click="addToCart(i)">
                       <v-icon>{{ plus }}</v-icon>
                     </v-btn>
                   </v-img>
@@ -58,7 +58,14 @@ export default {
   },
   methods: {
     addToCart (index) {
-      this.$store.commit('addToCart', index)
+      this.addCartPlus()
+      this.addCartSpecific(index)
+    },
+    addCartPlus () {
+      this.$store.dispatch('addToCart')
+    },
+    addCartSpecific (index) {
+      this.$store.dispatch('addToTrendingAlbumCart', index)
     }
   }
 }

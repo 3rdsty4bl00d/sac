@@ -7,12 +7,12 @@ export const store = new Vuex.Store({
   state: {
     srcs: [
       {
-        src: 'https://picsum.photos/200/300/?gravity=center',
+        src: 'https://picsum.photos/510/300?random',
         name: 'Shivam Shrestha',
         song: 'Venom'
       },
       {
-        src: 'https://picsum.photos/510/300?random',
+        src: 'https://picsum.photos/200/300/?gravity=center',
         name: 'Hell Boy',
         song: 'Hell Bells'
       },
@@ -139,7 +139,7 @@ export const store = new Vuex.Store({
           'https://www.revolvermag.com/sites/default/files/styles/original_image__844px_x_473px_/public/media/section-media/screen_shot_2017-08-14_at_12.18.16_pm.png?itok=SmNPE1gU&timestamp=1508359501'
       },
       {
-        albumName: 'Just For Life',
+        albumName: 'Lust For Life',
         albumList: '8 Songs',
         albumArtist: 'Lana Del Rey',
         albumShop: 0,
@@ -149,7 +149,7 @@ export const store = new Vuex.Store({
     ],
     imageSrc: [
       {
-        src: 'https://picsum.photos/200/300/?gravity=center'
+        src: 'https://picsum.photos/200/300/?gravity=west'
       },
       {
         src: 'https://picsum.photos/200/300/?gravity=east'
@@ -221,39 +221,35 @@ export const store = new Vuex.Store({
     cart: 0
   },
   mutations: {
-    addToCart: (state, index) => {
-      state.cart++
+    setCart: (state, payload) => {
+      state.user = payload
       if (state.load === false) {
         state.load = !state.load
       }
-      const key = index
+    },
+    setTrendingAlbumCart: (state, payload) => {
+      let key = payload
       state.trendingAlbum[key].albumShop++
     }
   },
-  getters: {
-    cart (state) {
-      return state.cart
+  actions: {
+    addToCart: ({ commit, state }) => {
+      const newCart = state.cart++
+      commit('setCart', newCart)
     },
-    load (state) {
-      return state.load
-    },
-    navBarItems (state) {
-      return state.navBarItems
-    },
-    iconsFooter (state) {
-      return state.iconsFooter
-    },
-    imageSrc (state) {
-      return state.imageSrc
-    },
-    srcs (state) {
-      return state.srcs
-    },
-    items (state) {
-      return state.items
-    },
-    trendingAlbum (state) {
-      return state.trendingAlbum
+    addToTrendingAlbumCart: ({ commit }, payload) => {
+      const newIndex = payload
+      commit('setTrendingAlbumCart', newIndex)
     }
+  },
+  getters: {
+    cart: state => state.cart,
+    load: state => state.load,
+    navBarItems: state => state.navBarItems,
+    iconsFooter: state => state.iconsFooter,
+    imageSrc: state => state.imageSrc,
+    srcs: state => state.srcs,
+    items: state => state.items,
+    trendingAlbum: state => state.trendingAlbum
   }
 })

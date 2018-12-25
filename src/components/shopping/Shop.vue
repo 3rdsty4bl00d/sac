@@ -22,13 +22,19 @@
             <v-container>
               <v-layout row wrap>
                 <v-flex xs12 sm6 md4>
-                  <v-img :src="shoppingUrl[i]" height="200px" width="200px"></v-img>
+                  <v-img
+                    :src="trendingAlbum[trendingNumber[i]].albumImg"
+                    height="200px"
+                    width="200px"
+                  ></v-img>
                 </v-flex>
                 <v-flex xs12 sm6 md8>
-                  <p class="display-1">Number of items: {{ addingShoppingCart(i) }}</p>
-                  <p class="headline">{{ shoppingAlbum[i] }}</p>
-                  <p>{{ shoppingArtists[i] }}</p>
-                  <v-btn fab @click.prevent="addToCart(i)">
+                  <p
+                    class="display-1"
+                  >Number of items: {{ trendingAlbum[trendingNumber[i]].albumShop }}</p>
+                  <p class="headline">{{ trendingAlbum[trendingNumber[i]].albumName }}</p>
+                  <p>{{ trendingAlbum[trendingNumber[i]].albumArtist }}</p>
+                  <v-btn fab @click="addToCart(trendingNumber[i])">
                     <v-icon>fas fa-plus</v-icon>
                   </v-btn>
                   <v-btn fab>
@@ -47,11 +53,9 @@
 <script>
 export default {
   data: () => ({
-    /* addingShoppingCart: [], */
-    shoppingArtists: [],
-    shoppingAlbum: [],
-    shoppingUrl: [],
-    times: 0
+    times: 0,
+    value: true,
+    trendingNumber: []
   }),
   computed: {
     cart () {
@@ -66,26 +70,22 @@ export default {
   },
   methods: {
     addToCart (index) {
-      this.$store.commit('addToCart', index)
+      this.addCartPlus()
+      this.addCartSpecific(index)
     },
-    addingShoppingCart (index) {
-      return this.trendingAlbum[index].albumShop
+    addCartPlus () {
+      this.$store.dispatch('addToCart')
+    },
+    addCartSpecific (index) {
+      this.$store.dispatch('addToTrendingAlbumCart', index)
     }
   },
   created () {
     for (var i = 0; i < this.trendingAlbum.length; i++) {
       if (this.trendingAlbum[i].albumShop > 0) {
-        /* this.addingShoppingCart.push(this.trendingAlbum[i].albumShop) */
-        this.shoppingArtists.push(this.trendingAlbum[i].albumArtist)
-        this.shoppingAlbum.push(this.trendingAlbum[i].albumName)
-        this.shoppingUrl.push(this.trendingAlbum[i].albumImg)
+        this.trendingNumber.push(i)
         this.times++
       }
-    }
-  },
-  updated () {
-    for (var j = 0; j < this.addingShoppingCart.length; j++) {
-      this.addingShoppingCart[j] = this.trendingAlbum[j].albumShop
     }
   }
 }
