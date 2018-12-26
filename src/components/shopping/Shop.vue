@@ -37,7 +37,12 @@
                   <v-btn fab @click="addToCart(trendingNumber[i])">
                     <v-icon>fas fa-plus</v-icon>
                   </v-btn>
-                  <v-btn fab>
+                  <v-btn
+                    fab
+                    @click="minusToCart(trendingNumber[i])"
+                    :disabled="button"
+                    :id="buttonId"
+                  >
                     <v-icon>fas fa-minus</v-icon>
                   </v-btn>
                 </v-flex>
@@ -55,7 +60,9 @@ export default {
   data: () => ({
     times: 0,
     value: true,
-    trendingNumber: []
+    trendingNumber: [],
+    button: false,
+    buttonId: ''
   }),
   computed: {
     cart () {
@@ -72,12 +79,40 @@ export default {
     addToCart (index) {
       this.addCartPlus()
       this.addCartSpecific(index)
+      if (this.button === true) {
+        for (var i = 0; i < this.trendingNumber.length; i++) {
+          console.log('0')
+          if (this.trendingNumber[i] === index) {
+            console.log('1')
+            if (this.trendingAlbum[this.trendingNumber[i]].albumShop !== 0) {
+              this.button = !this.button
+            }
+          }
+        }
+      }
     },
     addCartPlus () {
       this.$store.dispatch('addToCart')
     },
     addCartSpecific (index) {
       this.$store.dispatch('addToTrendingAlbumCart', index)
+    },
+    minusToCart (index) {
+      this.minusToCartSub()
+      this.minusToSpecific(index)
+      for (let i = 0; i < this.trendingNumber.length; i++) {
+        if (this.trendingNumber[i] === index) {
+          if (this.trendingAlbum[this.trendingNumber[i]].albumShop === 0) {
+            this.button = !this.button
+          }
+        }
+      }
+    },
+    minusToCartSub () {
+      this.$store.dispatch('minusToCart')
+    },
+    minusToSpecific (index) {
+      this.$store.dispatch('minusToSpecific', index)
     }
   },
   created () {

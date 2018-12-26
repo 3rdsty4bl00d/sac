@@ -230,6 +230,16 @@ export const store = new Vuex.Store({
     setTrendingAlbumCart: (state, payload) => {
       let key = payload
       state.trendingAlbum[key].albumShop++
+    },
+    setCartMinus: (state, payload) => {
+      state.user = payload
+      if (state.user === 0) {
+        state.load = !state.load
+      }
+    },
+    setMinusToSpecific: (state, payload) => {
+      let key = payload
+      state.trendingAlbum[key].albumShop--
     }
   },
   actions: {
@@ -240,6 +250,14 @@ export const store = new Vuex.Store({
     addToTrendingAlbumCart: ({ commit }, payload) => {
       const newIndex = payload
       commit('setTrendingAlbumCart', newIndex)
+    },
+    minusToCart: ({ commit, state }) => {
+      const minusCart = --state.cart
+      commit('setCartMinus', minusCart)
+    },
+    minusToSpecific: ({ commit }, payload) => {
+      const minusIndex = payload
+      commit('setMinusToSpecific', minusIndex)
     }
   },
   getters: {
